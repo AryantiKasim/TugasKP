@@ -29,3 +29,6 @@ Route::get('/home', function() {
 
 Route::resource('users', UserController::class)
     ->middleware('auth');
+
+Route::resource('pendapatan', PendapatanController::class)
+    ->middleware('auth');
