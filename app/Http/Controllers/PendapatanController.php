@@ -7,18 +7,67 @@ use App\Pelayaran;
 use App\Pendapatan;
 use App\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable;
+use Yajra\DataTables\DataTables;
 
 class PendapatanController extends Controller
 {
-    public function index ()
+    public function index()
     {
+        $periode = date("m-Y");
         $pendapatans = Pendapatan::all();
         return view('pendapatan.index', [
-            'pendapatans' => $pendapatans
+            'pendapatans' => $pendapatans,
+            'periode' => $periode
         ]);
     }
 
-    public function create ()
+    public function data(DataTables $dataTables, $periode)
+    {
+        $datas = DB::table('pendapatans')
+            ->join('lokasis', 'lokasis.id', '=', 'pendapatans.id_lokasi')
+            ->join('pelayarans', 'pelayarans.id', '=', 'pendapatans.id_pelayaran')
+            ->join('units', 'units.id', '=', 'pendapatans.id_unit')
+            ->select([
+                'pendapatans.id',
+                'bulan',
+                'lokasis.nama as lokasi',
+                'pelayarans.jenis_pelayaran as pelayaran',
+                'units.nama as unit',
+                'call_kapal',
+                'gt_kapal',
+                'pnd_pandu',
+                'pnd_pandu_standby',
+                'pnd_tunda',
+                'pnd_tunda_kawal',
+                'pnd_kepil',
+                'pnd_kpl_patrol',
+                'pnd_tunda_standby'
+            ])
+            ->where('bulan', $periode)
+            ->get();
+
+        $number = 1;
+        foreach ($datas as $data) {
+            $data->number = $number;
+            $number = $number + 1;
+        }
+
+        return $dataTables->collection($datas)
+            ->addColumn('number', function ($data) {
+                return $data->number;
+            })
+            ->addColumn('action', function ($data) {
+                $btn = '';
+                $btn .= '<a href="'.route('pendapatan.edit', $data->id).'" class="btn btn-primary btn-xs">Edit</a>';
+                $btn .= '<a href="'.route('pendapatan.destroy', $data->id).'" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">Delete</a>';
+                return $btn;
+            })
+            ->make(true);
+    }
+
+    public function create()
     {
         $units = Unit::all();
         $pelayarans = Pelayaran::all();
@@ -31,7 +80,7 @@ class PendapatanController extends Controller
 
     }
 
-    public function store (Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'id_unit' => 'required',
@@ -70,29 +119,28 @@ class PendapatanController extends Controller
         $pendapatan->pnd_tunda_standby = $request->pnd_tunda_standby;
 
 
-
         $pendapatan->save();
 
         return redirect()->route('pendapatan.index')
             ->with('success_message', 'Berhasil menambah data');
     }
 
-    public function show ($id)
+    public function show($id)
     {
 
     }
 
-    public function edit ($id)
+    public function edit($id)
     {
 
     }
 
-    public function update (Request $request, $id)
+    public function update(Request $request, $id)
     {
 
     }
 
-    public function destroy (Request $request, $id)
+    public function destroy(Request $request, $id)
     {
 
     }

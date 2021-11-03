@@ -14,21 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');\
+    return redirect('dashboard');
 });
 
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', function() {
+Route::get('/dashboard', function() {
     return view('home');
-})->name('home')->middleware('auth');
+})->name('dashboard')->middleware('auth');
 
 Route::resource('users', UserController::class)
     ->middleware('auth');
 
 Route::resource('pendapatan', PendapatanController::class)
     ->middleware('auth');
+Route::get('pendapatan/data/{periode}', 'PendapatanController@data')->name('pendapatan.data');

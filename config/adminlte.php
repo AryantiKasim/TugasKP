@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Dashboard',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Dashboard</b>Pendapatan',
+    'logo' => '<b>SBU</b>Marine',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -65,7 +65,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -242,6 +242,11 @@ return [
             'text' => 'search',
         ],
         [
+            'text' => 'Dashboard',
+            'url'  => '/dashboard',
+            'icon'  => 'fa fa-tachometer-alt',
+        ],
+        [
             'text' => 'User',
             'url'  => '/users',
             'icon'  => 'fa fa-users',
@@ -386,7 +391,7 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -401,7 +406,7 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -426,7 +431,7 @@ return [
             ],
         ],
         'Pace' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'css',
@@ -440,6 +445,21 @@ return [
                 ],
             ],
         ],
+//        'DateTimePicker' => [
+//            'active' => true,
+//            'files' => [
+//                [
+//                    'type' => 'css',
+//                    'asset' => true,
+//                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+//                ],
+//                [
+//                    'type' => 'js',
+//                    'asset' => true,
+//                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+//                ],
+//            ]
+//        ]
     ],
 
     /*
