@@ -27,6 +27,7 @@ Auth::routes();
 Route::get('/dashboard', function() {
     return view('home');
 })->name('dashboard')->middleware('auth');
+Route::post('dashboard/data', 'HomeController@data')->name('dashboard.data');
 
 Route::resource('users', UserController::class)
     ->middleware('auth');

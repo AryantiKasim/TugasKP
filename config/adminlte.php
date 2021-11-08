@@ -445,21 +445,21 @@ return [
                 ],
             ],
         ],
-//        'DateTimePicker' => [
-//            'active' => true,
-//            'files' => [
-//                [
-//                    'type' => 'css',
-//                    'asset' => true,
-//                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
-//                ],
-//                [
-//                    'type' => 'js',
-//                    'asset' => true,
-//                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
-//                ],
-//            ]
-//        ]
+        'Chart' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/vendor/chart.js/Chart.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/vendor/chart.js/Chart.js',
+                ],
+            ]
+        ]
     ],
 
     /*
