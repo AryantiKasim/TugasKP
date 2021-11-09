@@ -24,14 +24,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', function() {
-    return view('home');
-})->name('dashboard')->middleware('auth');
-Route::post('dashboard/data', 'HomeController@data')->name('dashboard.data');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth');
+Route::get('/dashboard/data/{periode}', 'HomeController@data')->name('dashboard.data');
 
 Route::resource('users', UserController::class)
     ->middleware('auth');
 
 Route::resource('pendapatan', PendapatanController::class)
     ->middleware('auth');
-Route::get('pendapatan/data/{periode}', 'PendapatanController@data')->name('pendapatan.data');
+Route::get('/pendapatan/data/{periode}', 'PendapatanController@data')->name('pendapatan.data');
