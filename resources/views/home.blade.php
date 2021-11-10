@@ -168,6 +168,7 @@
         var areaChartOptions = {
             maintainAspectRatio: false,
             responsive: true,
+            datasetFill: false,
             legend: {
                 display: false
             },
@@ -216,12 +217,17 @@
         var lineChartData = $.extend(true, {}, areaChartData)
         lineChartData.datasets[0].fill = false;
         lineChartData.datasets[1].fill = false;
-        lineChartOptions.datasetFill = false
+        lineChartOptions.datasetFill = false;
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        };
 
         var lineChart = new Chart(lineChartCanvas, {
-            type: 'line',
+            type: 'bar',
             // data: lineChartData,
-            options: lineChartOptions
+            options: barChartOptions
         })
 
         periode.change(function () {
