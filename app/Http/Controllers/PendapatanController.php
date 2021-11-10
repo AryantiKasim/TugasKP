@@ -60,8 +60,8 @@ class PendapatanController extends Controller
             })
             ->addColumn('action', function ($data) {
                 $btn = '';
-                $btn .= '<a href="'.route('pendapatan.edit', $data->id).'" class="btn btn-primary btn-xs">Edit</a>';
-                $btn .= '<a href="'.route('pendapatan.destroy', $data->id).'" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">Delete</a>';
+                $btn .= '<a href="' . route('pendapatan.edit', $data->id) . '" class="btn btn-primary btn-xs">Edit</a>';
+                $btn .= '<a href="' . route('pendapatan.destroy', $data->id) . '" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">Delete</a>';
                 return $btn;
             })
             ->make(true);
@@ -142,6 +142,9 @@ class PendapatanController extends Controller
 
     public function destroy(Request $request, $id)
     {
-
+        $pend = Pendapatan::find($id);
+        if ($pend) $pend->delete();
+        return redirect()->route('pendapatan.index')
+            ->with('success_message', 'Berhasil menghapus pendapatan');
     }
 }
