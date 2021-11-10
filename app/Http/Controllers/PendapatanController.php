@@ -127,24 +127,69 @@ class PendapatanController extends Controller
 
     public function show($id)
     {
-
+        //
     }
 
     public function edit($id)
     {
+        // $pendapatan = Pendapatan::find($id);
+        // if (!$pendapatan) return redirect()->route('pendapatans.index')
+        //     ->with('error_message', 'Data dengan id'.$id.' tidak ditemukan');
+        // return view('pendapatans.edit', [
+        //     'pendapatan' => $pendapatan
+        // ]);
 
+        $pend = Pendapatan::find($id);
+        if ($pend) $pend->edit();
+        return redirect()->route('pendapatan.index')
+            ->with('success_message', 'Berhasil mengedit data pendapatan');
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'id_unit' => 'required',
+            'id_lokasi' => 'required',
+            'id_pelayaran' => 'required',
+            'bulan' => 'required',
+            'call_kapal' => 'required',
+            'gt_kapal' => 'required',
+            'pnd_pandu' => 'required',
+            'pnd_pandu_standby' => 'required',
+            'pnd_tunda' => 'required',
+            'pnd_tunda_kawal' => 'required',
+            'pnd_kepil' => 'required',
+            'pnd_kpl_patrol' => 'required',
+            'pnd_tunda_standby' => 'required',
 
+        ]);
+        $pendapatan = new Pendapatan();
+
+        $pendapatan->id_unit = $request->id_unit;
+        $pendapatan->id_lokasi = $request->id_lokasi;
+        $pendapatan->id_pelayaran = $request->id_pelayaran;
+        $pendapatan->bulan = $request->bulan;
+        $pendapatan->call_kapal = $request->call_kapal;
+        $pendapatan->gt_kapal = $request->gt_kapal;
+        $pendapatan->pnd_pandu = $request->pnd_pandu;
+        $pendapatan->pnd_pandu_standby = $request->pnd_pandu_standby;
+        $pendapatan->pnd_tunda = $request->pnd_tunda;
+        $pendapatan->pnd_tunda_kawal = $request->pnd_tunda_kawal;
+        $pendapatan->pnd_kepil = $request->pnd_kepil;
+        $pendapatan->pnd_kpl_patrol = $request->pnd_kpl_patrol;
+        $pendapatan->pnd_tunda_standby = $request->pnd_tunda_standby;
+
+
+        $pendapatan->save();
+        return redirect()->route('pendapatans.index')
+            ->with('success_message', 'Berhasil mengubah data');
     }
 
     public function destroy(Request $request, $id)
     {
         $pend = Pendapatan::find($id);
         if ($pend) $pend->delete();
-        return redirect()->route('pendapatan.index')
+        return redirect()->route('pendapatans.index')
             ->with('success_message', 'Berhasil menghapus pendapatan');
     }
 }

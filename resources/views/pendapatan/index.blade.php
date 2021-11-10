@@ -9,7 +9,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'List User')
+@section('title', 'Pendapatan')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Pendapatan</h1>
@@ -29,6 +29,8 @@
                                name="periode"
                                id="periode" onchange="refresh()">
                     </div>
+
+                    <div class="table-responsive">
                     <table class="table table-hover table-bordered table-stripped" id="table">
                         <thead>
                         <tr>
@@ -77,6 +79,7 @@
                         {{--@endforeach--}}
                         {{--</tbody>--}}
                     </table>
+                    </div>
 
                 </div>
             </div>
