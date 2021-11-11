@@ -8,10 +8,10 @@
 ?>
 @extends('adminlte::page')
 
-@section('title', 'Tambah User')
+@section('title', 'Tambah Data Pendapatan')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Tambah User</h1>
+    <h1 class="m-0 text-dark">Tambah Data Pendapatan</h1>
 @stop
 
 @section('content')

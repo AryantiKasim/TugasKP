@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-    <form action="{{route('pendapatans.update', $pendapatan)}}" method="post">
+    <form action="{{route('pendapatan.update', $pendapatan)}}" method="post">
         @method('PUT')
         @csrf
         <div class="row">

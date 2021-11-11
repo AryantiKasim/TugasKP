@@ -132,17 +132,16 @@ class PendapatanController extends Controller
 
     public function edit($id)
     {
-        // $pendapatan = Pendapatan::find($id);
-        // if (!$pendapatan) return redirect()->route('pendapatans.index')
-        //     ->with('error_message', 'Data dengan id'.$id.' tidak ditemukan');
-        // return view('pendapatans.edit', [
-        //     'pendapatan' => $pendapatan
-        // ]);
+        $pendapatan = Pendapatan::find($id);
+        if(!$pendapatan) return redirect()->route('pendapatan.index')->with('error.message', 'Data dengan id'.$id.'tidak ditemukan');
+        return view('pendapatan.edit', [
+            'pendapatan' => $pendapatan
+        ]);
 
-        $pend = Pendapatan::find($id);
-        if ($pend) $pend->edit();
-        return redirect()->route('pendapatan.index')
-            ->with('success_message', 'Berhasil mengedit data pendapatan');
+        // $pendapatan = Pendapatan::find($id);
+        // if ($pendapatan) $pendapatan->edit();
+        // return redirect()->route('pendapatan.edit')
+        //     ->with('success_message', 'Berhasil mengedit data pendapatan');
     }
 
     public function update(Request $request, $id)
@@ -163,6 +162,7 @@ class PendapatanController extends Controller
             'pnd_tunda_standby' => 'required',
 
         ]);
+
         $pendapatan = new Pendapatan();
 
         $pendapatan->id_unit = $request->id_unit;
@@ -181,7 +181,8 @@ class PendapatanController extends Controller
 
 
         $pendapatan->save();
-        return redirect()->route('pendapatans.index')
+
+        return redirect()->route('pendapatan.index')
             ->with('success_message', 'Berhasil mengubah data');
     }
 
