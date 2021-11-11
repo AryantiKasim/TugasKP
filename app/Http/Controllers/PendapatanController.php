@@ -95,8 +95,7 @@ class PendapatanController extends Controller
             'pnd_tunda_kawal' => 'required',
             'pnd_kepil' => 'required',
             'pnd_kpl_patrol' => 'required',
-            'pnd_tunda_standby' => 'required',
-
+            'pnd_tunda_standby' => 'required'
         ]);
 //        $array = $request->only([
 //            'id_unit', 'id_pelayaran', 'id_lokasi', 'bulan', 'call_kapal', 'gt_kapal', 'pnd_pandu', 'pnd_pandu_standby', 'pnd_tunda', 'pnd_tunda_kawal', 'pnd_kepil', 'pnd_kpl_patrol', 'pnd_tunda_standby'
@@ -133,9 +132,16 @@ class PendapatanController extends Controller
     public function edit($id)
     {
         $pendapatan = Pendapatan::find($id);
-        if(!$pendapatan) return redirect()->route('pendapatan.index')->with('error.message', 'Data dengan id'.$id.'tidak ditemukan');
+        $units = Unit::all();
+        $pelayarans = Pelayaran::all();
+        $lokasis = Lokasi::all();
+        if(!$pendapatan) return redirect()->route('pendapatan.index')
+        ->with('error.message', 'Data dengan id'.$id.'tidak ditemukan');
         return view('pendapatan.edit', [
-            'pendapatan' => $pendapatan
+            'pendapatan' => $pendapatan,
+            'units' => $units,
+            'pelayarans' => $pelayarans,
+            'lokasis' => $lokasis
         ]);
 
         // $pendapatan = Pendapatan::find($id);

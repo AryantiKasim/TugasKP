@@ -20,9 +20,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{route('pendapatan.create')}}" class="btn btn-success mb-2">
-                        Tambah
-                    </a>
+                    <a href="{{route('pendapatan.create')}}" class="btn btn-success mb-2">Tambah </a>
                     <div class="col-md-3 form-group">
                         <label>Date:</label>
                         <input class="form-control" size="4" type="text" value="{{$periode}}" maxlength="7"
@@ -34,7 +32,7 @@
                     <table class="table table-hover table-bordered table-stripped" id="table">
                         <thead>
                         <tr>
-                            <th data-priority="0" width="10px">No.</th>
+                            <th data-priority=" 0" width="10px">No.</th>
                             <th data-priority="1">Unit</th>
                             <th data-priority="2">Lokasi</th>
                             <th data-priority="3">Pelayaran</th>
