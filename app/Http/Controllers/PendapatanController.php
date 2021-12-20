@@ -43,7 +43,8 @@ class PendapatanController extends Controller
                 'pnd_tunda_kawal',
                 'pnd_kepil',
                 'pnd_kpl_patrol',
-                'pnd_tunda_standby'
+                'pnd_tunda_standby',
+                'laba'
             ])
             ->where('bulan', $periode)
             ->get();
@@ -95,7 +96,8 @@ class PendapatanController extends Controller
             'pnd_tunda_kawal' => 'required',
             'pnd_kepil' => 'required',
             'pnd_kpl_patrol' => 'required',
-            'pnd_tunda_standby' => 'required'
+            'pnd_tunda_standby' => 'required',
+            'laba' => 'required',
         ]);
 //        $array = $request->only([
 //            'id_unit', 'id_pelayaran', 'id_lokasi', 'bulan', 'call_kapal', 'gt_kapal', 'pnd_pandu', 'pnd_pandu_standby', 'pnd_tunda', 'pnd_tunda_kawal', 'pnd_kepil', 'pnd_kpl_patrol', 'pnd_tunda_standby'
@@ -116,6 +118,7 @@ class PendapatanController extends Controller
         $pendapatan->pnd_kepil = $request->pnd_kepil;
         $pendapatan->pnd_kpl_patrol = $request->pnd_kpl_patrol;
         $pendapatan->pnd_tunda_standby = $request->pnd_tunda_standby;
+        $pendapatan->laba = $request->laba;
 
 
         $pendapatan->save();
@@ -166,6 +169,7 @@ class PendapatanController extends Controller
             'pnd_kepil' => 'required',
             'pnd_kpl_patrol' => 'required',
             'pnd_tunda_standby' => 'required',
+            'laba' => 'required',
 
         ]);
 
@@ -184,6 +188,7 @@ class PendapatanController extends Controller
         $pendapatan->pnd_kepil = $request->pnd_kepil;
         $pendapatan->pnd_kpl_patrol = $request->pnd_kpl_patrol;
         $pendapatan->pnd_tunda_standby = $request->pnd_tunda_standby;
+        $pendapatan->laba = $request->laba;
 
 
         $pendapatan->save();

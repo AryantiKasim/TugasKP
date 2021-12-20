@@ -101,6 +101,10 @@
                             <label for="pnd_tunda_standby">Pendapatan Tunda Standby</label>
                             <input type="number" class="form-control col-md-4"
                             name="pnd_tunda_standby" value="{{$pendapatan->pnd_tunda_standby ?? old('pnd_tunda_standby')}}">
+
+                            <label for="laba">Laba</label>
+                            <input type="number" class="form-control col-md-4"
+                                   name="laba" value="{{$laba->laba ?? old('laba')}}">
                         </div>
 
                     </div>

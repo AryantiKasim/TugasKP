@@ -256,6 +256,7 @@ return [
             'url'  => '/pendapatan',
             'icon'  => 'fa fa-money-bill-alt',
         ],
+        
 //        [
 //            'text' => 'blog',
 //            'url'  => 'admin/blog',

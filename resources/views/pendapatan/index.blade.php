@@ -45,7 +45,8 @@
                             <th data-priority="10">Pendapatan Kepil</th>
                             <th data-priority="11">Pendapatan Kapal Patrol</th>
                             <th data-priority="12">Pendapatan Tunda Standby</th>
-                            <th data-priority="13">Action</th>
+                            <th data-priority="13">Laba</th>
+                            <th data-priority="14">Action</th>
                         </tr>
                         </thead>
                         {{--<tbody>--}}
@@ -127,6 +128,7 @@
                 {data: 'pnd_kepil'},
                 {data: 'pnd_kpl_patrol'},
                 {data: 'pnd_tunda_standby'},
+                {data: 'laba'},
                 {data: 'action', orderable: false, searchable: false}
             ],
             lengthMenu: [[10, 25, 50,100, 200, - 1], [10, 25, 50, 100, 200, "All"]],

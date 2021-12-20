@@ -83,6 +83,32 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-yellow">
+                <div class="card-header">
+                    <h3 class="card-title">Laba</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="lineChartLaba"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
 @stop
 
 @push('js')
@@ -154,6 +180,8 @@
                     pieUnit.update();
                     lineChart.data = data.monthly_revenue;
                     lineChart.update();
+                    lineChartLaba.data = data.monthly_profit;
+                    lineChartLaba.update();
                     // alert(data.service_revenue);
                 },
                 error: function (request, status, error) {
@@ -213,6 +241,7 @@
             ]
         }
         var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+        var lineChartCanvasLaba = $('#lineChartLaba').get(0).getContext('2d')
         var lineChartOptions = $.extend(true, {}, areaChartOptions)
         var lineChartData = $.extend(true, {}, areaChartData)
         lineChartData.datasets[0].fill = false;
@@ -228,7 +257,13 @@
             type: 'bar',
             // data: lineChartData,
             options: barChartOptions
-        })
+        });
+
+        var lineChartLaba = new Chart(lineChartCanvasLaba, {
+            type: 'bar',
+            // data: lineChartData,
+            options: barChartOptions
+        });
 
         periode.change(function () {
             generateGraph()

@@ -102,10 +102,13 @@ class HomeController extends Controller
         ];
 
         $monthly_revenue = new \stdClass();
+        $monthly_profit = new \stdClass();
         $tahun = substr($periode, -4);
         $bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
         $revenueBulanan = [];
+        $profitBulanan = [];
         $monthly_revenue->labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $monthly_profit->labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         foreach ($bulan as $b) {
             $pend = Pendapatan::where('bulan', $b . '-' . $tahun)
                 ->select([
@@ -116,31 +119,30 @@ class HomeController extends Controller
                     DB::raw('nvl(sum(pnd_kepil), 0) AS pnd_kepil'),
                     DB::raw('nvl(sum(pnd_kpl_patrol), 0) AS pnd_kpl_patrol'),
                     DB::raw('nvl(sum(pnd_tunda_standby), 0) AS pnd_tunda_standby'),
+                    DB::raw('nvl(sum(laba), 0) AS laba'),
                 ])->first();
             $pendapatan = $pend->pnd_pandu + $pend->pnd_pandu_standby + $pend->pnd_tunda + $pend->pnd_tunda_kawal + $pend->pnd_kepil + $pend->pnd_kpl_patrol + $pend->pnd_tunda_standby;
             array_push($revenueBulanan, $pendapatan);
+            array_push($profitBulanan, $pend->laba);
         }
 
         $monthly_revenue->datasets = [
-//            [
-//                'data'=> $trafficBulanan,
-//                'type'=> 'line',
-//                'label'=> 'Call',
-//                'borderColor'=> '#00a65a',
-//                'fill'=> false,
-//                'borderDash' => [5,5],
-//                'yAxisID'=> 'y-axis-1',
-//            ],
             [
                 'data' => $revenueBulanan,
-//                'type'=> 'line',
-//                'label'=> 'Revenue (Million)',
-//                'borderColor'=> '#3c8dbc',
-//                'backgroundColor' => 'rgb(60, 141, 188, 0.3)',
-//                'fill'=> true,
-//                'borderWidth'=> 1.5,
-//                'yAxisID'=> 'y-axis-2',
                 'label' => 'Pendapatan',
+                'backgroundColor' => 'rgba(60,141,188,0.9)',
+                'borderColor' => 'rgba(60,141,188,0.8)',
+                'pointRadius' => false,
+                'pointColor' => '#3b8bba',
+                'pointStrokeColor' => 'rgba(60,141,188,1)',
+                'pointHighlightFill' => '#fff',
+                'pointHighlightStroke' => 'rgba(60,141,188,1)',
+            ]
+        ];
+        $monthly_profit->datasets = [
+            [
+                'data' => $profitBulanan,
+                'label' => 'Laba',
                 'backgroundColor' => 'rgba(60,141,188,0.9)',
                 'borderColor' => 'rgba(60,141,188,0.8)',
                 'pointRadius' => false,
@@ -154,7 +156,8 @@ class HomeController extends Controller
         return response()->json([
             'service_revenue' => $data_revenue,
             'data_unit' => $data_unit,
-            'monthly_revenue' => $monthly_revenue
+            'monthly_revenue' => $monthly_revenue,
+            'monthly_profit' => $monthly_profit
         ]);
     }
 

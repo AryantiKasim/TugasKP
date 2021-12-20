@@ -78,6 +78,9 @@
 
                             <label for="pnd_tunda_standby">Pendapatan Tunda Standby</label>
                             <input type="number" class="form-control col-md-4" name="pnd_tunda_standby">
+
+                            <label for="laba">Laba</label>
+                            <input type="number" class="form-control col-md-4" name="laba">
                         </div>
 
                     </div>
