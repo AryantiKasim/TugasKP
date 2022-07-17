@@ -8,6 +8,7 @@ use App\Pendapatan;
 use App\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Contracts\DataTable;
 use Yajra\DataTables\DataTables;
 
@@ -83,6 +84,7 @@ class PendapatanController extends Controller
 
     public function store(Request $request)
     {
+        Log::debug("test");
         $request->validate([
             'id_unit' => 'required',
             'id_lokasi' => 'required',
@@ -103,25 +105,30 @@ class PendapatanController extends Controller
 //            'id_unit', 'id_pelayaran', 'id_lokasi', 'bulan', 'call_kapal', 'gt_kapal', 'pnd_pandu', 'pnd_pandu_standby', 'pnd_tunda', 'pnd_tunda_kawal', 'pnd_kepil', 'pnd_kpl_patrol', 'pnd_tunda_standby'
 //        ]);
 //        $pendapatan = Pendapatan::create($array);
-        $pendapatan = new Pendapatan();
 
-        $pendapatan->id_unit = $request->id_unit;
-        $pendapatan->id_lokasi = $request->id_lokasi;
-        $pendapatan->id_pelayaran = $request->id_pelayaran;
-        $pendapatan->bulan = $request->bulan;
-        $pendapatan->call_kapal = $request->call_kapal;
-        $pendapatan->gt_kapal = $request->gt_kapal;
-        $pendapatan->pnd_pandu = $request->pnd_pandu;
-        $pendapatan->pnd_pandu_standby = $request->pnd_pandu_standby;
-        $pendapatan->pnd_tunda = $request->pnd_tunda;
-        $pendapatan->pnd_tunda_kawal = $request->pnd_tunda_kawal;
-        $pendapatan->pnd_kepil = $request->pnd_kepil;
-        $pendapatan->pnd_kpl_patrol = $request->pnd_kpl_patrol;
-        $pendapatan->pnd_tunda_standby = $request->pnd_tunda_standby;
-        $pendapatan->laba = $request->laba;
+        try {
+            $pendapatan = new Pendapatan();
+
+            $pendapatan->id_unit = $request->id_unit;
+            $pendapatan->id_lokasi = $request->id_lokasi;
+            $pendapatan->id_pelayaran = $request->id_pelayaran;
+            $pendapatan->bulan = $request->bulan;
+            $pendapatan->call_kapal = $request->call_kapal;
+            $pendapatan->gt_kapal = $request->gt_kapal;
+            $pendapatan->pnd_pandu = $request->pnd_pandu;
+            $pendapatan->pnd_pandu_standby = $request->pnd_pandu_standby;
+            $pendapatan->pnd_tunda = $request->pnd_tunda;
+            $pendapatan->pnd_tunda_kawal = $request->pnd_tunda_kawal;
+            $pendapatan->pnd_kepil = $request->pnd_kepil;
+            $pendapatan->pnd_kpl_patrol = $request->pnd_kpl_patrol;
+            $pendapatan->pnd_tunda_standby = $request->pnd_tunda_standby;
+            $pendapatan->laba = $request->laba;
 
 
-        $pendapatan->save();
+            $pendapatan->save();
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
 
         return redirect()->route('pendapatan.index')
             ->with('success_message', 'Berhasil menambah data');
@@ -201,7 +208,7 @@ class PendapatanController extends Controller
     {
         $pend = Pendapatan::find($id);
         if ($pend) $pend->delete();
-        return redirect()->route('pendapatans.index')
+        return redirect()->route('pendapatan.index')
             ->with('success_message', 'Berhasil menghapus pendapatan');
     }
 }
