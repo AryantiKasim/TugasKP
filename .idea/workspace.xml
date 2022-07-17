@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcb62047-2ae4-4c6f-bad2-81fa0f34fa72" name="Default Changelist" comment="update dashboard">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fcb62047-2ae4-4c6f-bad2-81fa0f34fa72" name="Default Changelist" comment="update dashboard" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +203,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
+            <state relative-caret-position="187">
               <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
             </state>
           </provider>
@@ -510,7 +508,7 @@
       <workItem from="1652877100264" duration="215000" />
       <workItem from="1652877349487" duration="2447000" />
       <workItem from="1658049020315" duration="279000" />
-      <workItem from="1658049328553" duration="1178000" />
+      <workItem from="1658049328553" duration="2050000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1635315215537</created>
@@ -551,7 +549,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69437000" />
+    <option name="totallyTimeSpent" value="70309000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -862,7 +860,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
+        <state relative-caret-position="187">
           <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
         </state>
       </provider>
